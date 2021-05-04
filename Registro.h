@@ -5,6 +5,7 @@ typedef struct {
 } Registro;
 
 // Função para criar n registros aleatórios
-void InicializarEndereco(Registro registro[], int n);
+void InicializarRegistros(Registro registro[], int n);
+char* rand_string(char* str);
 
 
