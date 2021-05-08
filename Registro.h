@@ -6,6 +6,14 @@ typedef struct {
 
 // Função para criar n registros aleatórios
 void InicializarRegistros(Registro registro[], int n);
+
+// Função para preencher registros
+void PreencherRegistros(Registro registro[], int n);
+
+void PrintRegistros(Registro registro[], int n);
+
 char* rand_string(char* str);
+
+
 
 

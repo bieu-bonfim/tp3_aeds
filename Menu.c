@@ -43,6 +43,27 @@ void MenuTamanho(int tipo) {
 
     printf("\n\nEscolha o tamanho do conjunto: ");
     scanf("%d", &opcao);
+
+    switch (opcao) {
+        case 1:
+            MenuAlgoritmo(tipo, 1000);
+        case 2:
+            MenuAlgoritmo(tipo, 5000);
+        case 3:
+            MenuAlgoritmo(tipo, 10000);
+        case 4:
+            MenuAlgoritmo(tipo, 50000);
+        case 5:
+            MenuAlgoritmo(tipo, 100000);
+        case 6:
+            MenuAlgoritmo(tipo, 500000);
+        case 7:
+            MenuAlgoritmo(tipo, 1000000);
+        default:
+            MenuInicial();
+            break;
+    }
+
 }
 
 void MenuAlgoritmo(int tipo, int n) {
@@ -52,44 +73,47 @@ void MenuAlgoritmo(int tipo, int n) {
     printf("\n------- Algoritmo ------");
     printf("\n------------------------");
 
-    printf("\n\nTamanho escolhido: %n", &n);
-
+    printf("\n\nTamanho escolhido: %d", n);
 
     printf("\n\n1 - Bolha");
-    printf("\n2 - Seleção");
-    printf("\n3 - Inserção");
+    printf("\n2 - Selecao");
+    printf("\n3 - Insercao");
     printf("\n4 - Shellsort");
     printf("\n5 - Quicksort");
     printf("\n6 - Bogosort");
-    printf("\n7 - Gnomeort");
+    printf("\n7 - Gnomesort");
     printf("\n0 - Escolher outro tamanho");
 
-    printf("\n\nEscolha o tamanho do conjunto: ");
+    printf("\n\nEscolha o algoritmo: ");
     scanf("%d", &opcao);
 
-    switch (opcao) {
-        case 1:
-            Bubble(tipo, n);
-            break;
-        case 2:
-            Selecao(tipo, n);
-            break;
-        case 3:
-            Insercao(tipo, n);
-            break;
-        case 4:
-            Shellsort(tipo, n);
-            break;
-        case 5:
-            Quicksort(tipo, n);
-            break;
-        case 6:
-            Bogosort(tipo, n);
-            break;
-        case 7:
-            Gnomesort(tipo, n);
-            break;
-        default:
-            MenuTamanho(tipo);
+    if (opcao != 0) {
+        MenuOpcaoTeste(tipo, n, opcao);
+    } else {
+        MenuTamanho(tipo);
     }
+    MenuAlgoritmo(tipo, n);
+}
+
+void MenuOpcaoTeste(int tipo, int n, int alg) {
+    int opcao;
+
+    printf("\n--------- Menu ---------");
+    printf("\n----- Tipo de Teste ----");
+    printf("\n------------------------");
+
+    printf("\n\nTamanho escolhido: %d", n);
+
+    printf("\n\n1 - Teste unitario");
+    printf("\n2 - Teste final");
+    printf("\n0 - Escolher outro algoritmo");
+
+    printf("\n\nEscolha o tipo de teste: ");
+    scanf("%d", &opcao);
+    if (opcao != 0) {
+        Testar(tipo, n, alg, opcao);
+    } else {
+        MenuAlgoritmo(tipo, n);
+    }
+    MenuOpcaoTeste(tipo, n, alg);
 }
