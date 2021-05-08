@@ -330,14 +330,6 @@ void RegistroShellsort (Registro * v, int n){
     time_taken = ((double)t)/CLOCKS_PER_SEC;
 }
 
-void RegistroQuicksort (Registro * v, int n) {
-
-}
-
-void VetorQuicksort (int v[], int n) {
-
-}
-
 void VetorBubble (int v[], int n ){
     clock_t t;
     t = clock();
@@ -443,33 +435,77 @@ void VetorShellsort (int v[], int n){
     time_taken = ((double)t)/CLOCKS_PER_SEC;
 }
 
-//void Ordena(int Esq, int Dir, Item *A)
-//{
-//    int i,j;
-//    Particao(Esq, Dir, &i, &j, A);
-//    if (Esq < j) Ordena(Esq, j, A);
-//    if (i < Dir) Ordena(i, Dir, A);
-//}
-//void QuickSort(Item *A, int n)
-//{
-//    Ordena(0, n-1, A);
-//}
-//
-//void Particao(int Esq, int Dir, int *i, int *j, Item *A){
-//    Item pivo, aux;
-//    *i = Esq; *j = Dir;
-//    pivo = A[(*i + *j)/2]; /* obtem o pivo x */
-//    do
-//    {
-//        while (pivo.Chave > A[*i].Chave) (*i)++;
-//        while (pivo.Chave < A[*j].Chave) (*j)--;
-//        if (*i <= *j)
-//        {
-//            aux = A[*i]; A[*i] = A[*j]; A[*j] = aux;
-//            (*i)++; (*j)--;
-//        }
-//    } while (*i <= *j);
-//}
+void RegistroQuicksort (Registro * v, int n) {
+    clock_t t;
+    t = clock();
+    comp = 0;
+    mov = 0;
+    RegistroOrdena(0, n-1, v);
+    t = clock() - t;
+    time_taken = ((double)t)/CLOCKS_PER_SEC;
+}
+
+void VetorQuicksort (int v[], int n) {
+    clock_t t;
+    t = clock();
+    comp = 0;
+    mov = 0;
+    VetorOrdena(0, n-1, v);
+    t = clock() - t;
+    time_taken = ((double)t)/CLOCKS_PER_SEC;
+}
+
+void RegistroOrdena(int Esq, int Dir, Registro *A)
+{
+    int i,j;
+    RegistroParticao(Esq, Dir, &i, &j, A);
+    if (Esq < j) RegistroOrdena(Esq, j, A);
+    if (i < Dir) RegistroOrdena(i, Dir, A);
+}
+
+void RegistroParticao(int Esq, int Dir, int *i, int *j, Registro *A){
+    Registro pivo, aux;
+    *i = Esq; *j = Dir;
+    pivo = A[(*i + *j)/2];
+    do
+    {
+        comp++;
+        while (pivo.chave > A[*i].chave) (*i)++;
+        while (pivo.chave < A[*j].chave) (*j)--;
+        if (*i <= *j)
+        {
+            mov++;
+            aux = A[*i]; A[*i] = A[*j]; A[*j] = aux;
+            (*i)++; (*j)--;
+        }
+    } while (*i <= *j);
+}
+
+void VetorOrdena(int Esq, int Dir, int v[])
+{
+    int i,j;
+    VetorParticao(Esq, Dir, &i, &j, v);
+    if (Esq < j) VetorOrdena(Esq, j, v);
+    if (i < Dir) VetorOrdena(i, Dir, v);
+}
+
+void VetorParticao(int Esq, int Dir, int *i, int *j, int v[]){
+    int pivo, aux;
+    *i = Esq; *j = Dir;
+    pivo = v[(*i + *j)/2];
+    do
+    {
+        comp++;
+        while (pivo > v[*i]) (*i)++;
+        while (pivo < v[*j]) (*j)--;
+        if (*i <= *j)
+        {
+            mov++;
+            aux = v[*i]; v[*i] = v[*j]; v[*j] = aux;
+            (*i)++; (*j)--;
+        }
+    } while (*i <= *j);
+}
 
 bool IsVetorSorted(int v[], int n)
 {

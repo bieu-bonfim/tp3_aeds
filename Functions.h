@@ -19,3 +19,8 @@ void VetorGnomesort(int v[], int n);
 void RegistroGnomesort(Registro *v, int n);
 void VetorQuicksort (int v[], int n);
 void RegistroQuicksort (Registro * v, int n);
+void RegistroParticao(int Esq, int Dir, int *i, int *j, Registro *A);
+void RegistroOrdena(int Esq, int Dir, Registro *A);
+void VetorOrdena(int Esq, int Dir, int v[]);
+void VetorParticao(int Esq, int Dir, int *i, int *j, int v[]);
+
