@@ -171,6 +171,8 @@ void Testar(int tipo, int n, int alg, int testes) {
             }
         }
 
+        free(vetorAux);
+        free(vetor);
     } else if (tipo == 2) {
         Registro *registros = (Registro*) malloc(sizeof(Registro)*n);
         Registro *registrosAux = (Registro*) malloc(sizeof(Registro)*n);
@@ -313,6 +315,8 @@ void Testar(int tipo, int n, int alg, int testes) {
                 strcat(fileName, "registrosHeapTest.txt");
             }
         }
+        free(registrosAux);
+        free(registros);
     }
 
     if (testes == 2) {
@@ -825,9 +829,9 @@ void RegistroMerge(Registro *v, int l, int m, int r)
 
     /* Copy data to temp arrays L[] and R[] */
     for (i = 0; i < n1; i++)
-        L[i].chave = v[l + i].chave;
+        L[i] = v[l + i];
     for (j = 0; j < n2; j++)
-        R[j].chave = v[m + 1 + j].chave;
+        R[j] = v[m + 1 + j];
 
     /* Merge the temp arrays back into arr[l..r]*/
     i = 0; // Initial index of first subarray
@@ -837,11 +841,11 @@ void RegistroMerge(Registro *v, int l, int m, int r)
         comp++;
         mov++;
         if (L[i].chave <= R[j].chave) {
-            v[k].chave = L[i].chave;
+            v[k] = L[i];
             i++;
         }
         else {
-            v[k].chave = R[j].chave;
+            v[k] = R[j];
             j++;
         }
         k++;
@@ -850,7 +854,7 @@ void RegistroMerge(Registro *v, int l, int m, int r)
     /* Copy the remaining elements of L[], if there
     are any */
     while (i < n1) {
-        v[k].chave = L[i].chave;
+        v[k] = L[i];
         i++;
         k++;
     }
@@ -858,7 +862,7 @@ void RegistroMerge(Registro *v, int l, int m, int r)
     /* Copy the remaining elements of R[], if there
     are any */
     while (j < n2) {
-        v[k].chave = R[j].chave;
+        v[k] = R[j];
         j++;
         k++;
     }
@@ -946,7 +950,7 @@ void RegistroHeapify(Registro v[], int n, int i)
     int largest = i; // Initialize largest as root
     int l = 2 * i + 1; // left = 2*i + 1
     int r = 2 * i + 2; // right = 2*i + 2
-    int aux;
+    Registro aux;
 
     // If left child is larger than root
     if (l < n && v[l].chave > v[largest].chave)
@@ -958,9 +962,9 @@ void RegistroHeapify(Registro v[], int n, int i)
 
     // If largest is not root
     if (largest != i) {
-        aux = v[i].chave;
-        v[i].chave = v[largest].chave;
-        v[largest].chave = aux;
+        aux = v[i];
+        v[i] = v[largest];
+        v[largest] = aux;
 
         // Recursively heapify the affected sub-tree
         RegistroHeapify(v, n, largest);
@@ -974,7 +978,7 @@ void RegistroHeapsort(Registro v[], int n)
     t = clock();
     comp = 0;
     mov = 0;
-    int aux;
+    Registro aux;
     // Build heap (rearrange array)
     for (int i = n / 2 - 1; i >= 0; i--)
         RegistroHeapify(v, n, i);
@@ -984,9 +988,9 @@ void RegistroHeapsort(Registro v[], int n)
     for (int i = n - 1; i > 0; i--) {
         mov++;
         // Move current root to end
-        aux = v[0].chave;
-        v[0].chave = v[i].chave;
-        v[i].chave = aux;
+        aux = v[0];
+        v[0] = v[i];
+        v[i] = aux;
 
         // call max heapify on the reduced heap
         RegistroHeapify(v, i, 0);
