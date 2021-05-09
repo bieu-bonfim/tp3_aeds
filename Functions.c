@@ -5,13 +5,13 @@
 #include <time.h>
 #include <string.h>
 
-int comp = 0;
-int mov = 0;
+double comp = 0;
+double mov = 0;
 double time_taken = 0.0;
 
 void PrintVetor(int v[], int n) {
     for (int i = 0; i < n; ++i) {
-        printf("\nNum: %d", v[i]);
+        printf("%d ", v[i]);
     }
 }
 
@@ -24,9 +24,13 @@ void Testar(int tipo, int n, int alg, int testes) {
     char fileName[50];
     sprintf(fileName, "data/tam%d/", n);
     if(tipo == 1) {
-        int vetor[n];
+        int *vetor = (int*) malloc(sizeof (int) * n);
+        int *vetorAux = (int*) malloc(sizeof (int) * n);
+
         for (int i = 0; i < n; ++i) {
-            vetor[i] = rand() % n;
+            int numero = rand() % n;
+            vetor[i] = numero;
+            vetorAux[i] = numero;
         }
 
         if (alg == 1) {
@@ -34,6 +38,9 @@ void Testar(int tipo, int n, int alg, int testes) {
                 VetorBubble(vetor, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
+                    for (int j = 0; j < n; ++j) {
+                        vetor[j] = vetorAux[j];
+                    }
                     VetorBubble(vetor, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -47,6 +54,9 @@ void Testar(int tipo, int n, int alg, int testes) {
                 VetorSelecao(vetor, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
+                    for (int j = 0; j < n; ++j) {
+                        vetor[j] = vetorAux[j];
+                    }
                     VetorSelecao(vetor, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -59,6 +69,9 @@ void Testar(int tipo, int n, int alg, int testes) {
                 VetorInsercao(vetor, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
+                    for (int j = 0; j < n; ++j) {
+                        vetor[j] = vetorAux[j];
+                    }
                     VetorInsercao(vetor, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -71,6 +84,9 @@ void Testar(int tipo, int n, int alg, int testes) {
                 VetorShellsort(vetor, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
+                    for (int j = 0; j < n; ++j) {
+                        vetor[j] = vetorAux[j];
+                    }
                     VetorShellsort(vetor, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -83,6 +99,9 @@ void Testar(int tipo, int n, int alg, int testes) {
                 VetorQuicksort(vetor, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
+                    for (int j = 0; j < n; ++j) {
+                        vetor[j] = vetorAux[j];
+                    }
                     VetorQuicksort(vetor, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -95,6 +114,9 @@ void Testar(int tipo, int n, int alg, int testes) {
                 VetorBogosort(vetor, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
+                    for (int j = 0; j < n; ++j) {
+                        vetor[j] = vetorAux[j];
+                    }
                     VetorBogosort(vetor, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -107,6 +129,9 @@ void Testar(int tipo, int n, int alg, int testes) {
                 VetorGnomesort(vetor, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
+                    for (int j = 0; j < n; ++j) {
+                        vetor[j] = vetorAux[j];
+                    }
                     VetorGnomesort(vetor, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -117,12 +142,17 @@ void Testar(int tipo, int n, int alg, int testes) {
         }
     } else if (tipo == 2) {
         Registro *registros = (Registro*) malloc(sizeof(Registro)*n);
+        Registro *registrosAux = (Registro*) malloc(sizeof(Registro)*n);
         InicializarRegistros(registros, n);
+
+        registrosAux = registros;
+
         if (alg == 1) {
             if (testes == 1) {
                 RegistroBubble(registros, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
+                    registros = registrosAux;
                     RegistroBubble(registros, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -136,6 +166,7 @@ void Testar(int tipo, int n, int alg, int testes) {
                 RegistroSelecao(registros, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
+                    registros = registrosAux;
                     RegistroSelecao(registros, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -148,6 +179,7 @@ void Testar(int tipo, int n, int alg, int testes) {
                 RegistroInsercao(registros, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
+                    registros = registrosAux;
                     RegistroInsercao(registros, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -160,6 +192,7 @@ void Testar(int tipo, int n, int alg, int testes) {
                 RegistroShellsort(registros, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
+                    registros = registrosAux;
                     RegistroShellsort(registros, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -172,6 +205,7 @@ void Testar(int tipo, int n, int alg, int testes) {
                 RegistroQuicksort(registros, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
+                    registros = registrosAux;
                     RegistroQuicksort(registros, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -184,6 +218,7 @@ void Testar(int tipo, int n, int alg, int testes) {
                 RegistroBogosort(registros, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
+                    registros = registrosAux;
                     RegistroBogosort(registros, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -196,6 +231,7 @@ void Testar(int tipo, int n, int alg, int testes) {
                 RegistroGnomesort(registros, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
+                    registros = registrosAux;
                     RegistroGnomesort(registros, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -216,14 +252,19 @@ void Testar(int tipo, int n, int alg, int testes) {
             exit(EXIT_FAILURE);
         }
 
+        double mediaTempo, mediaMov, mediaComp;
+        mediaTempo = somaTempo/5;
+        mediaComp = somaComp/5;
+        mediaMov = somaMov/5;
+
         fputs("\nTamanho: ", file);
         fprintf(file, "%d", n);
         fputs("\nMedia de movimentacoes: ", file);
-        fprintf(file, "%.2f", (somaMov/5));
+        fprintf(file, "%.4f", mediaMov);
         fputs("\nMedia de comparacoes: ", file);
-        fprintf(file, "%.2f", (somaComp/5));
+        fprintf(file, "%.4f", mediaComp);
         fputs("\nTempo medio: ", file);
-        fprintf(file, "%.10f", (somaTempo/5));
+        fprintf(file, "%.10f", mediaTempo);
         fputs(" segundos.\n", file);
         fclose(file);
     }
@@ -624,4 +665,69 @@ void RegistroGnomesort(Registro *v, int n)
     }
     t = clock() - t;
     time_taken = ((double)t)/CLOCKS_PER_SEC;
+}
+
+void VetorMerge(int v[], int l, int m, int r)
+{
+    int i, j, k;
+    int n1 = m - l + 1;
+    int n2 = r - m;
+
+    /* create temp arrays */
+    int L[n1], R[n2];
+
+    /* Copy data to temp arrays L[] and R[] */
+    for (i = 0; i < n1; i++)
+        L[i] = v[l + i];
+    for (j = 0; j < n2; j++)
+        R[j] = v[m + 1 + j];
+
+    /* Merge the temp arrays back into arr[l..r]*/
+    i = 0; // Initial index of first subarray
+    j = 0; // Initial index of second subarray
+    k = l; // Initial index of merged subarray
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            v[k] = L[i];
+            i++;
+        }
+        else {
+            v[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    /* Copy the remaining elements of L[], if there
+    are any */
+    while (i < n1) {
+        v[k] = L[i];
+        i++;
+        k++;
+    }
+
+    /* Copy the remaining elements of R[], if there
+    are any */
+    while (j < n2) {
+        v[k] = R[j];
+        j++;
+        k++;
+    }
+}
+
+/* l is for left index and r is right index of the
+sub-array of arr to be sorted */
+void VetorMergeSort(int v[], int l, int r)
+{
+    if (l < r) {
+        // Same as (l+r)/2, but avoids overflow for
+        // large l and h
+        int m = l + (r - l) / 2;
+
+        // Sort first and second halves
+        VetorMergeSort(v, l, m);
+        VetorMergeSort(v, m + 1, r);
+
+        VetorMerge(v, l, m, r);
+    }
 }
