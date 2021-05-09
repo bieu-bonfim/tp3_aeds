@@ -4,7 +4,7 @@
 #include "time.h"
 #include "string.h"
 
-void InicializarRegistros(Registro registro[], Registro registroAux[], int n) {
+void InicializarRegistros(Registro registro[], int n) {
     for (int i = 0; i < n; ++i) {
         registro[i].chave = rand() % n;
         rand_string(registro[i].cad0);
@@ -21,8 +21,6 @@ void InicializarRegistros(Registro registro[], Registro registroAux[], int n) {
         registro[i].real1 = ((float)rand()/(float)(RAND_MAX)) * 10;
         registro[i].real2 = ((float)rand()/(float)(RAND_MAX)) * 10;
         registro[i].real3 = ((float)rand()/(float)(RAND_MAX)) * 10;
-
-        registroAux[i] = registro[i];
     }
 }
 

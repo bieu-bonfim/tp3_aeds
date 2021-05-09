@@ -176,16 +176,16 @@ void Testar(int tipo, int n, int alg, int testes) {
     } else if (tipo == 2) {
         Registro *registros = (Registro*) malloc(sizeof(Registro)*n);
         Registro *registrosAux = (Registro*) malloc(sizeof(Registro)*n);
-        InicializarRegistros(registros, registrosAux, n);
+        InicializarRegistros(registros, n);
+        for (int i = 0; i < n; ++i) {
+            registrosAux[i] = registros[i];
+        }
 
         if (alg == 1) {
             if (testes == 1) {
                 RegistroBubble(registros, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
-                    for (int j = 0; j < n; ++j) {
-                        registros[j] = registrosAux[n];
-                    }
                     RegistroBubble(registros, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -199,9 +199,6 @@ void Testar(int tipo, int n, int alg, int testes) {
                 RegistroSelecao(registros, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
-                    for (int j = 0; j < n; ++j) {
-                        registros[j] = registrosAux[n];
-                    }
                     RegistroSelecao(registros, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -214,9 +211,6 @@ void Testar(int tipo, int n, int alg, int testes) {
                 RegistroInsercao(registros, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
-                    for (int j = 0; j < n; ++j) {
-                        registros[j] = registrosAux[n];
-                    }
                     RegistroInsercao(registros, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -229,9 +223,6 @@ void Testar(int tipo, int n, int alg, int testes) {
                 RegistroShellsort(registros, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
-                    for (int j = 0; j < n; ++j) {
-                        registros[j] = registrosAux[n];
-                    }
                     RegistroShellsort(registros, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -433,11 +424,13 @@ void RegistroShellsort (Registro * v, int n){
     do{
         h = h/3;
         for( i = h ; i < n ; i++ ){
-            aux = v[i]; j = i;
+            aux = v[i];
+            j = i;
             comp++;
             while (v[j - h].chave > aux.chave){
                 mov++;
-                v[j] = v[j - h]; j -= h;
+                v[j] = v[j - h];
+                j -= h;
                 if (j < h) break;
             }
             v[j] = aux;
