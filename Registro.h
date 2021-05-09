@@ -5,7 +5,7 @@ typedef struct {
 } Registro;
 
 // Função para criar n registros aleatórios
-void InicializarRegistros(Registro registro[], int n);
+void InicializarRegistros(Registro registro[], Registro registroAux[], int n);
 
 // Função para preencher registros
 void PreencherRegistros(Registro registro[], int n);
