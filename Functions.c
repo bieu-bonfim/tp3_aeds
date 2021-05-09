@@ -825,7 +825,8 @@ void RegistroMerge(Registro *v, int l, int m, int r)
     int n2 = r - m;
 
     /* create temp arrays */
-    Registro L[n1], R[n2];
+    Registro *R = (Registro*) malloc(sizeof (Registro)*n2);
+    Registro *L = (Registro*) malloc(sizeof (Registro)*n1);
 
     /* Copy data to temp arrays L[] and R[] */
     for (i = 0; i < n1; i++)
@@ -866,6 +867,9 @@ void RegistroMerge(Registro *v, int l, int m, int r)
         j++;
         k++;
     }
+
+    free(R);
+    free(L);
 }
 
 /* l is for left index and r is right index of the
