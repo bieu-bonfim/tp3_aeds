@@ -82,6 +82,8 @@ void MenuAlgoritmo(int tipo, int n) {
     printf("\n5 - Quicksort");
     printf("\n6 - Bogosort");
     printf("\n7 - Gnomesort");
+    printf("\n8 - Mergesort");
+    printf("\n9 - Heapsort");
     printf("\n0 - Escolher outro tamanho");
 
     printf("\n\nEscolha o algoritmo: ");

@@ -139,20 +139,51 @@ void Testar(int tipo, int n, int alg, int testes) {
                 }
                 strcat(fileName, "vetorGnomeTest.txt");
             }
+        } else if (alg == 8) {
+            if (testes == 1) {
+                VetorMergesort(vetor, 0, n-1);
+            } else {
+                for (int i = 0; i < 5; ++i) {
+                    for (int j = 0; j < n; ++j) {
+                        vetor[j] = vetorAux[j];
+                    }
+                    VetorMergesort(vetor, 0, n-1);
+                    somaComp += comp;
+                    somaMov += mov;
+                    somaTempo += time_taken;
+                }
+                strcat(fileName, "vetorMergeTest.txt");
+            }
+        } else if (alg == 9) {
+            if (testes == 1) {
+                VetorHeapsort(vetor, n);
+            } else {
+                for (int i = 0; i < 5; ++i) {
+                    for (int j = 0; j < n; ++j) {
+                        vetor[j] = vetorAux[j];
+                    }
+                    VetorHeapsort(vetor, n);
+                    somaComp += comp;
+                    somaMov += mov;
+                    somaTempo += time_taken;
+                }
+                strcat(fileName, "vetorHeapTest.txt");
+            }
         }
+
     } else if (tipo == 2) {
         Registro *registros = (Registro*) malloc(sizeof(Registro)*n);
         Registro *registrosAux = (Registro*) malloc(sizeof(Registro)*n);
-        InicializarRegistros(registros, n);
-
-        registrosAux = registros;
+        InicializarRegistros(registros, registrosAux, n);
 
         if (alg == 1) {
             if (testes == 1) {
                 RegistroBubble(registros, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
-                    registros = registrosAux;
+                    for (int j = 0; j < n; ++j) {
+                        registros[j] = registrosAux[n];
+                    }
                     RegistroBubble(registros, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -166,7 +197,9 @@ void Testar(int tipo, int n, int alg, int testes) {
                 RegistroSelecao(registros, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
-                    registros = registrosAux;
+                    for (int j = 0; j < n; ++j) {
+                        registros[j] = registrosAux[n];
+                    }
                     RegistroSelecao(registros, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -179,7 +212,9 @@ void Testar(int tipo, int n, int alg, int testes) {
                 RegistroInsercao(registros, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
-                    registros = registrosAux;
+                    for (int j = 0; j < n; ++j) {
+                        registros[j] = registrosAux[n];
+                    }
                     RegistroInsercao(registros, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -192,7 +227,9 @@ void Testar(int tipo, int n, int alg, int testes) {
                 RegistroShellsort(registros, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
-                    registros = registrosAux;
+                    for (int j = 0; j < n; ++j) {
+                        registros[j] = registrosAux[n];
+                    }
                     RegistroShellsort(registros, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -205,7 +242,9 @@ void Testar(int tipo, int n, int alg, int testes) {
                 RegistroQuicksort(registros, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
-                    registros = registrosAux;
+                    for (int j = 0; j < n; ++j) {
+                        registros[j] = registrosAux[n];
+                    }
                     RegistroQuicksort(registros, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -218,7 +257,9 @@ void Testar(int tipo, int n, int alg, int testes) {
                 RegistroBogosort(registros, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
-                    registros = registrosAux;
+                    for (int j = 0; j < n; ++j) {
+                        registros[j] = registrosAux[n];
+                    }
                     RegistroBogosort(registros, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -231,7 +272,9 @@ void Testar(int tipo, int n, int alg, int testes) {
                 RegistroGnomesort(registros, n);
             } else {
                 for (int i = 0; i < 5; ++i) {
-                    registros = registrosAux;
+                    for (int j = 0; j < n; ++j) {
+                        registros[j] = registrosAux[n];
+                    }
                     RegistroGnomesort(registros, n);
                     somaComp += comp;
                     somaMov += mov;
@@ -239,8 +282,37 @@ void Testar(int tipo, int n, int alg, int testes) {
                 }
                 strcat(fileName, "registrosGnomeTest.txt");
             }
+        } else if (alg == 8) {
+            if (testes == 1) {
+                RegistroMergesort(registros, 0, n-1);
+            } else {
+                for (int i = 0; i < 5; ++i) {
+                    for (int j = 0; j < n; ++j) {
+                        registros[j] = registrosAux[n];
+                    }
+                    RegistroMergesort(registros, 0, n-1);
+                    somaComp += comp;
+                    somaMov += mov;
+                    somaTempo += time_taken;
+                }
+                strcat(fileName, "registrosMergeTest.txt");
+            }
+        } else if (alg == 9) {
+            if (testes == 1) {
+                RegistroHeapsort(registros, n);
+            } else {
+                for (int i = 0; i < 5; ++i) {
+                    for (int j = 0; j < n; ++j) {
+                        registros[j] = registrosAux[n];
+                    }
+                    RegistroHeapsort(registros, n);
+                    somaComp += comp;
+                    somaMov += mov;
+                    somaTempo += time_taken;
+                }
+                strcat(fileName, "registrosHeapTest.txt");
+            }
         }
-
     }
 
     if (testes == 2) {
@@ -669,6 +741,7 @@ void RegistroGnomesort(Registro *v, int n)
 
 void VetorMerge(int v[], int l, int m, int r)
 {
+
     int i, j, k;
     int n1 = m - l + 1;
     int n2 = r - m;
@@ -687,6 +760,8 @@ void VetorMerge(int v[], int l, int m, int r)
     j = 0; // Initial index of second subarray
     k = l; // Initial index of merged subarray
     while (i < n1 && j < n2) {
+        comp++;
+        mov++;
         if (L[i] <= R[j]) {
             v[k] = L[i];
             i++;
@@ -717,17 +792,205 @@ void VetorMerge(int v[], int l, int m, int r)
 
 /* l is for left index and r is right index of the
 sub-array of arr to be sorted */
-void VetorMergeSort(int v[], int l, int r)
+void VetorMergesort(int v[], int l, int r)
 {
+    clock_t t;
+    t = clock();
+    comp = 0;
+    mov = 0;
     if (l < r) {
         // Same as (l+r)/2, but avoids overflow for
         // large l and h
         int m = l + (r - l) / 2;
 
         // Sort first and second halves
-        VetorMergeSort(v, l, m);
-        VetorMergeSort(v, m + 1, r);
+        VetorMergesort(v, l, m);
+        VetorMergesort(v, m + 1, r);
 
         VetorMerge(v, l, m, r);
     }
+    t = clock() - t;
+    time_taken = ((double)t)/CLOCKS_PER_SEC;
+}
+
+void RegistroMerge(Registro *v, int l, int m, int r)
+{
+
+    int i, j, k;
+    int n1 = m - l + 1;
+    int n2 = r - m;
+
+    /* create temp arrays */
+    Registro L[n1], R[n2];
+
+    /* Copy data to temp arrays L[] and R[] */
+    for (i = 0; i < n1; i++)
+        L[i].chave = v[l + i].chave;
+    for (j = 0; j < n2; j++)
+        R[j].chave = v[m + 1 + j].chave;
+
+    /* Merge the temp arrays back into arr[l..r]*/
+    i = 0; // Initial index of first subarray
+    j = 0; // Initial index of second subarray
+    k = l; // Initial index of merged subarray
+    while (i < n1 && j < n2) {
+        comp++;
+        mov++;
+        if (L[i].chave <= R[j].chave) {
+            v[k].chave = L[i].chave;
+            i++;
+        }
+        else {
+            v[k].chave = R[j].chave;
+            j++;
+        }
+        k++;
+    }
+
+    /* Copy the remaining elements of L[], if there
+    are any */
+    while (i < n1) {
+        v[k].chave = L[i].chave;
+        i++;
+        k++;
+    }
+
+    /* Copy the remaining elements of R[], if there
+    are any */
+    while (j < n2) {
+        v[k].chave = R[j].chave;
+        j++;
+        k++;
+    }
+}
+
+/* l is for left index and r is right index of the
+sub-array of arr to be sorted */
+void RegistroMergesort(Registro *v, int l, int r)
+{
+    clock_t t;
+    t = clock();
+    comp = 0;
+    mov = 0;
+    if (l < r) {
+        // Same as (l+r)/2, but avoids overflow for
+        // large l and h
+        int m = l + (r - l) / 2;
+
+        // Sort first and second halves
+        RegistroMergesort(v, l, m);
+        RegistroMergesort(v, m + 1, r);
+
+        RegistroMerge(v, l, m, r);
+    }
+    t = clock() - t;
+    time_taken = ((double)t)/CLOCKS_PER_SEC;
+}
+
+void VetorHeapify(int v[], int n, int i)
+{
+    int largest = i; // Initialize largest as root
+    int l = 2 * i + 1; // left = 2*i + 1
+    int r = 2 * i + 2; // right = 2*i + 2
+    int aux;
+
+    // If left child is larger than root
+    if (l < n && v[l] > v[largest])
+        largest = l;
+
+    // If right child is larger than largest so far
+    if (r < n && v[r] > v[largest])
+        largest = r;
+
+    // If largest is not root
+    comp++;
+    if (largest != i) {
+        mov++;
+        aux = v[i];
+        v[i] = v[largest];
+        v[largest] = aux;
+
+        // Recursively heapify the affected sub-tree
+        VetorHeapify(v, n, largest);
+    }
+}
+
+// main function to do heap sort
+void VetorHeapsort(int v[], int n)
+{
+    clock_t t;
+    t = clock();
+    comp = 0;
+    mov = 0;
+    int aux;
+    // Build heap (rearrange array)
+    for (int i = n / 2 - 1; i >= 0; i--)
+        VetorHeapify(v, n, i);
+
+    // One by one extract an element from heap
+    for (int i = n - 1; i > 0; i--) {
+        // Move current root to end
+        aux = v[0];
+        v[0] = v[i];
+        v[i] = aux;
+
+        // call max heapify on the reduced heap
+        VetorHeapify(v, i, 0);
+    }
+    t = clock() - t;
+    time_taken = ((double)t)/CLOCKS_PER_SEC;
+}
+
+void RegistroHeapify(Registro v[], int n, int i)
+{
+    int largest = i; // Initialize largest as root
+    int l = 2 * i + 1; // left = 2*i + 1
+    int r = 2 * i + 2; // right = 2*i + 2
+    int aux;
+
+    // If left child is larger than root
+    if (l < n && v[l].chave > v[largest].chave)
+        largest = l;
+
+    // If right child is larger than largest so far
+    if (r < n && v[r].chave > v[largest].chave)
+        largest = r;
+
+    // If largest is not root
+    if (largest != i) {
+        aux = v[i].chave;
+        v[i].chave = v[largest].chave;
+        v[largest].chave = aux;
+
+        // Recursively heapify the affected sub-tree
+        RegistroHeapify(v, n, largest);
+    }
+}
+
+// main function to do heap sort
+void RegistroHeapsort(Registro v[], int n)
+{
+    clock_t t;
+    t = clock();
+    comp = 0;
+    mov = 0;
+    int aux;
+    // Build heap (rearrange array)
+    for (int i = n / 2 - 1; i >= 0; i--)
+        RegistroHeapify(v, n, i);
+
+    // One by one extract an element from heap
+    comp++;
+    for (int i = n - 1; i > 0; i--) {
+        mov++;
+        // Move current root to end
+        aux = v[0].chave;
+        v[0].chave = v[i].chave;
+        v[i].chave = aux;
+
+        // call max heapify on the reduced heap
+        RegistroHeapify(v, i, 0);
+    }
+    t = clock() - t;
+    time_taken = ((double)t)/CLOCKS_PER_SEC;
 }

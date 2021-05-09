@@ -24,6 +24,10 @@ void RegistroOrdena(int Esq, int Dir, Registro *A);
 void VetorOrdena(int Esq, int Dir, int v[]);
 void VetorParticao(int Esq, int Dir, int *i, int *j, int v[]);
 void VetorMerge(int v[], int l, int m, int r);
-void VetorMergeSort(int v[], int l, int r);
-
-
+void VetorMergesort(int v[], int l, int r);
+void RegistroMergesort(Registro *v, int l, int r);
+void RegistroMerge(Registro *v, int l, int m, int r);
+void VetorHeapsort(int arr[], int n);
+void VetorHeapify(int v[], int n, int i);
+void RegistroHeapify(Registro v[], int n, int i);
+void RegistroHeapsort(Registro v[], int n);
